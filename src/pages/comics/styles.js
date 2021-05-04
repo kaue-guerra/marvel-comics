@@ -100,3 +100,11 @@ export const ButtonMore = styled.div`
         margin: 0 8px;
     }
 `;
+
+export const Search = styled.section`
+    
+    .search{
+        height:100px;
+    }
+
+`;

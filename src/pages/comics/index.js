@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { FiChevronDown } from 'react-icons/fi'
-
+import Search from './../../components/Search'
 
 import api from '../../services/api'
 
@@ -9,13 +9,18 @@ import { Container, CardList, Card, ButtonDetails, ButtonSelect, ButtonMore } fr
 const Comics = () => {
 
     const [comics, setComics] = useState([]);
-
+    const [text, setText] = useState('')
 
     useEffect(() => {
         api.get('/comics')
             .then(response => setComics(response.data.data.results))
             .catch(e => console.log(e))
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        console.log(text);
+    }, [text])
+
 
     const handleMore = useCallback(
         async () => {
@@ -37,6 +42,7 @@ const Comics = () => {
 
     return (
         <Container>
+            <Search value={text} onChange={(search) => setText(search)} />
             <CardList>
                 {comics.map(comic => {
                     return (
@@ -60,7 +66,6 @@ const Comics = () => {
                 Mais
                 <FiChevronDown size={20} />
             </ButtonMore>
-
         </Container>)
 }
 
