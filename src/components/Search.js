@@ -7,7 +7,7 @@ const Search = ({ value, onChange }) => {
     }
 
     return (
-        <input type="search" value={value} onChange={handleChange} />
+        <input type="search" value={value} onChange={handleChange} placeholder="Buscar" />
     )
 
 }

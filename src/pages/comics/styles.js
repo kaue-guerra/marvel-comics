@@ -6,6 +6,16 @@ export const Container = styled.main`
     width:100%;
     height:100%;
 
+    input {
+        height: 70px;
+        display: block;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 5px;
+        width: 40%;
+        margin: 20px auto;
+    }
+
 `;
 
 export const CardList = styled.div`
@@ -99,12 +109,4 @@ export const ButtonMore = styled.div`
     svg{
         margin: 0 8px;
     }
-`;
-
-export const Search = styled.section`
-    
-    .search{
-        height:100px;
-    }
-
 `;

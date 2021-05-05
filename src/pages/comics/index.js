@@ -12,14 +12,16 @@ const Comics = () => {
     const [text, setText] = useState('')
 
     useEffect(() => {
-        api.get('/comics')
-            .then(response => setComics(response.data.data.results))
-            .catch(e => console.log(e))
-    }, []);
-
-    useEffect(() => {
-        console.log(text);
-    }, [text])
+        if (text) {
+            api.get(`/comics?titleStartsWith=${text}`)
+                .then(response => setComics(response.data.data.results))
+                .catch(e => console.log(e))
+        } else {
+            api.get('/comics')
+                .then(response => setComics(response.data.data.results))
+                .catch(e => console.log(e))
+        }
+    }, [text]);
 
 
     const handleMore = useCallback(
