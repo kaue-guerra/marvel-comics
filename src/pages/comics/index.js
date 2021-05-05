@@ -26,21 +26,38 @@ const Comics = () => {
 
     const handleMore = useCallback(
         async () => {
-            try {
-                const offset = comics.length;
-                const response = await api.get('comics', {
-                    params: {
-                        offset,
-                    },
-                });
+            if (text) {
+                try {
+                    const offset = comics.length;
+                    const response = await api.get(`/comics?titleStartsWith=${text}`, {
+                        params: {
+                            offset,
+                        },
+                    });
 
-                setComics([...comics, ...response.data.data.results]);
+                    setComics([...comics, ...response.data.data.results]);
 
 
-            } catch (err) {
-                console.log(err)
+                } catch (err) {
+                    console.log(err)
+                }
+            } else {
+                try {
+                    const offset = comics.length;
+                    const response = await api.get('comics', {
+                        params: {
+                            offset,
+                        },
+                    });
+
+                    setComics([...comics, ...response.data.data.results]);
+
+
+                } catch (err) {
+                    console.log(err)
+                }
             }
-        }, [comics])
+        }, [comics, text])
 
     return (
         <Container>
