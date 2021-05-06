@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { FiChevronDown } from 'react-icons/fi'
-import Search from './../../components/Search'
+import Search from '../../components/Search'
+import Header from '../../components/Header'
 
 import api from '../../services/api'
 
@@ -61,6 +62,7 @@ const Comics = () => {
 
     return (
         <Container>
+            <Header />
             <Search value={text} onChange={(search) => setText(search)} />
             <CardList>
                 {comics.map(comic => {
