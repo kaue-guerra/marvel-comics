@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { FiChevronDown } from 'react-icons/fi'
 import Search from '../../components/Search'
 import Header from '../../components/Header'
+import Modal from '../../components/Modal'
 
 import api from '../../services/api'
 
@@ -11,6 +12,7 @@ const Comics = () => {
 
     const [comics, setComics] = useState([]);
     const [text, setText] = useState('')
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         if (text) {
@@ -67,7 +69,7 @@ const Comics = () => {
             <CardList>
                 {comics.map(comic => {
                     return (
-                        <Card key={comic.id} >
+                        <Card key={comic.id} itemID={comic.id}>
                             <img className="imgComic" src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={`Capa de ${comic.title}`} />
                             {comic.title.length > 27
                                 ? <h2>{comic.title.substr(0, 27)}...</h2>
@@ -76,7 +78,16 @@ const Comics = () => {
 
                             <p>Number Pages: {comic.pageCount}</p>
                             <p>Format: {comic.format}</p>
-                            <ButtonDetails>Detalhes</ButtonDetails>
+                            <ButtonDetails onClick={() => setIsModalVisible(true)}>
+                                {console.log(comic)}
+                                Detalhes</ButtonDetails>
+
+                            {isModalVisible ? (<Modal onClose={() => setIsModalVisible(false)}>
+                                <h2>{comic.title}</h2>
+                            </Modal>
+                            ) : null}
+
+
                             <ButtonSelect>Selecionar</ButtonSelect>
                         </Card>
                     )
