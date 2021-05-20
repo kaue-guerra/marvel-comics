@@ -13,6 +13,7 @@ const Comics = () => {
     const [comics, setComics] = useState([]);
     const [text, setText] = useState('')
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [comicData, setComicData] = useState();
 
     useEffect(() => {
         if (text) {
@@ -62,6 +63,23 @@ const Comics = () => {
             }
         }, [comics, text])
 
+    // const detailsComic = async (id) => {
+    //     const response = await api.get(`/comics/${id}`)
+    //     setIsModalVisible(true);
+    //     setDetailsComic([...detailComic, ...response.data.data.results])
+    //     console.log(detailComic)
+    // }
+
+    async function getComic(id) {
+        const comicData = await api.get(`/comics/${id}`)
+            .then(response => setComicData(response.data.data.results))
+            .catch(e => console.log(e));
+        console.log(comicData)
+        setIsModalVisible(true)
+
+    }
+
+
     return (
         <Container>
             <Header />
@@ -78,12 +96,15 @@ const Comics = () => {
 
                             <p>Number Pages: {comic.pageCount}</p>
                             <p>Format: {comic.format}</p>
-                            <ButtonDetails onClick={() => setIsModalVisible(true)}>
-                                {console.log(comic)}
+                            <ButtonDetails onClick={(e) => { getComic(comic.id) }}>
                                 Detalhes</ButtonDetails>
 
                             {isModalVisible ? (<Modal onClose={() => setIsModalVisible(false)}>
-                                <h2>{comic.title}</h2>
+                                {comicData.map(comicDetail => {
+                                    return (
+                                        <h2>{comicDetail.title}</h2>
+                                    )
+                                })}
                             </Modal>
                             ) : null}
 
