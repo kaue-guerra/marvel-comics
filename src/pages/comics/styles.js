@@ -37,6 +37,14 @@ export const Card = styled.div`
         background-size: cover;
     }
 
+    .title-comic{
+        padding:5px;
+        text-align: justify;
+        max-width: 270px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
 `;
 

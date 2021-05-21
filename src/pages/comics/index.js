@@ -14,6 +14,7 @@ const Comics = () => {
     const [text, setText] = useState('')
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [comicData, setComicData] = useState();
+    const [comicId, setComicId] = useState(null);
 
     useEffect(() => {
         if (text) {
@@ -89,30 +90,20 @@ const Comics = () => {
                     return (
                         <Card key={comic.id} itemID={comic.id}>
                             <img className="imgComic" src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={`Capa de ${comic.title}`} />
-                            {comic.title.length > 27
-                                ? <h2>{comic.title.substr(0, 27)}...</h2>
-                                : <h2>{comic.title}</h2>
-                            }
-
+                            <h2 className="title-comic">{comic.title}</h2>
                             <p>Number Pages: {comic.pageCount}</p>
                             <p>Format: {comic.format}</p>
-                            <ButtonDetails onClick={(e) => { getComic(comic.id) }}>
+                            <ButtonDetails onClick={() => setComicId(comic.id)}>
                                 Detalhes</ButtonDetails>
-
-                            {isModalVisible ? (<Modal onClose={() => setIsModalVisible(false)}>
-                                {comicData.map(comicDetail => {
-                                    return (
-                                        <h2>{comicDetail.title}</h2>
-                                    )
-                                })}
-                            </Modal>
-                            ) : null}
-
-
                             <ButtonSelect>Selecionar</ButtonSelect>
                         </Card>
                     )
                 })}
+                <Modal isOpen={Boolean(comicId)} onClickClose={() => setComicId(null)}>
+                    <div>
+                        <h1>Detalhes</h1>
+                    </div>
+                </Modal>
             </CardList>
             <ButtonMore onClick={handleMore}>
                 <FiChevronDown size={20} />
