@@ -75,8 +75,7 @@ const Comics = () => {
         const comicData = await api.get(`/comics/${id}`)
             .then(response => setComicData(response.data.data.results))
             .catch(e => console.log(e));
-        console.log(comicData)
-        setIsModalVisible(true)
+        setComicId(id)
 
     }
 
@@ -93,17 +92,27 @@ const Comics = () => {
                             <h2 className="title-comic">{comic.title}</h2>
                             <p>Number Pages: {comic.pageCount}</p>
                             <p>Format: {comic.format}</p>
-                            <ButtonDetails onClick={() => setComicId(comic.id)}>
+                            <ButtonDetails onClick={() => getComic(comic.id)}>
                                 Detalhes</ButtonDetails>
                             <ButtonSelect>Selecionar</ButtonSelect>
                         </Card>
                     )
                 })}
-                <Modal isOpen={Boolean(comicId)} onClickClose={() => setComicId(null)}>
-                    <div>
-                        <h1>Detalhes</h1>
-                    </div>
-                </Modal>
+                {comicId && (
+                    <Modal isOpen onClickClose={() => setComicId(null)}>
+                        {comicData.map(data => {
+                            return (
+                                <div>
+                                    <h2 className="modal-title">{data.title}</h2>
+                                    <img className="imgComic-modal" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`Capa de ${data.title}`} />
+                                    <p>Number Pages: {data.pageCount}</p>
+                                    <p>Format: {data.format}</p>
+                                    <p>Description: {data.description}</p>
+                                </div>
+                            )
+                        })}
+                    </Modal>
+                )}
             </CardList>
             <ButtonMore onClick={handleMore}>
                 <FiChevronDown size={20} />
