@@ -16,7 +16,9 @@ const Header = () => {
                 <Link to="/">
                     <img src={Logo} alt="Marvel" className="logo" />
                 </Link>
-                <Link className="float-right mt-4 text-dark" to="/cart"> <i class="fas fa-shopping-cart">({length})</i></Link>
+
+                <Link to="/" className="display-4 ml-5 align-middle text-white" >Home</Link>
+                <Link className="float-right mt-4 text-white align-middle" to="/cart"> <i class="fas fa-shopping-cart">({length})</i></Link>
             </nav>
         </header>
     )

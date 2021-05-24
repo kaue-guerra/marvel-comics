@@ -91,12 +91,12 @@ const Comics = () => {
                     return (
                         <Card key={comic.id} comic={comic}>
                             <img className="imgComic" src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={`Capa de ${comic.title}`} />
-                            <h2 className="title-comic p-0 mb-1">{comic.title}</h2>
-                            <p className="p-0 mb-1">Number Pages: {comic.pageCount}</p>
-                            <p className="p-0 mb-2" >Format: {comic.format}</p>
-                            <button type="button" className="btn btn-outline-danger float-right mr-2" onClick={() => getComic(comic.id)}>
+                            <h2 className="title-comic p-0 mb-1 ml-2">{comic.title}</h2>
+                            <p className="p-0 mb-1 ml-2">Number Pages: {comic.pageCount}</p>
+                            <p className="p-0 mb-2 ml-2" >Format: {comic.format}</p>
+                            <button type="button" className="btn btn-danger float-right mr-2" onClick={() => getComic(comic.id)}>
                                 Detalhes</button>
-                            <button className="btn btn-outline-danger float-left ml-2" onClick={() => addItemCart(comic)}>Selecionar</button>
+                            <button className="btn btn-danger float-left ml-2" onClick={() => addItemCart(comic)}>Selecionar</button>
                         </Card>
                     )
                 })}
