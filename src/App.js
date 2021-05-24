@@ -1,13 +1,14 @@
-import Comics from './pages/comics';
+import React, { Fragment } from 'react';
 
-import GlobalStyle from './styles/global'
+import Routes, { } from "./routes";
+import Messages from './components/Messages';
 
 function App() {
 
   return (
     <>
-      <Comics />
-      <GlobalStyle />
+      <Messages />
+      <Routes />
     </>
   )
 

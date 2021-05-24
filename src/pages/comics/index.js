@@ -1,10 +1,13 @@
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiChevronDown } from 'react-icons/fi'
-import Search from '../../components/Search'
-import Header from '../../components/Header'
-import Modal from '../../components/Modal'
 
+import Header from '../../components/Header'
+import Search from '../../components/Search'
+import Modal from '../../components/Modal'
 import api from '../../services/api'
+import { addItem } from '../../store/ducks/cart'
+import { addMessage } from "../../store/ducks/layout"
 
 import { Container, CardList, Card, ButtonDetails, ButtonSelect, ButtonMore } from './styles'
 
@@ -12,9 +15,9 @@ const Comics = () => {
 
     const [comics, setComics] = useState([]);
     const [text, setText] = useState('')
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const [comicData, setComicData] = useState();
     const [comicId, setComicId] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (text) {
@@ -64,19 +67,18 @@ const Comics = () => {
             }
         }, [comics, text])
 
-    // const detailsComic = async (id) => {
-    //     const response = await api.get(`/comics/${id}`)
-    //     setIsModalVisible(true);
-    //     setDetailsComic([...detailComic, ...response.data.data.results])
-    //     console.log(detailComic)
-    // }
-
     async function getComic(id) {
         const comicData = await api.get(`/comics/${id}`)
             .then(response => setComicData(response.data.data.results))
             .catch(e => console.log(e));
         setComicId(id)
 
+    }
+
+    function addItemCart(comic) {
+        dispatch(addItem(comic));
+
+        dispatch(addMessage("HQ adicionada com sucesso!"));
     }
 
 
@@ -87,14 +89,14 @@ const Comics = () => {
             <CardList>
                 {comics.map(comic => {
                     return (
-                        <Card key={comic.id} itemID={comic.id}>
+                        <Card key={comic.id} comic={comic}>
                             <img className="imgComic" src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={`Capa de ${comic.title}`} />
-                            <h2 className="title-comic">{comic.title}</h2>
-                            <p>Number Pages: {comic.pageCount}</p>
-                            <p>Format: {comic.format}</p>
+                            <h2 className="title-comic p-0 mb-1">{comic.title}</h2>
+                            <p className="p-0 mb-1">Number Pages: {comic.pageCount}</p>
+                            <p className="p-0 mb-2" >Format: {comic.format}</p>
                             <ButtonDetails onClick={() => getComic(comic.id)}>
                                 Detalhes</ButtonDetails>
-                            <ButtonSelect>Selecionar</ButtonSelect>
+                            <ButtonSelect onClick={() => addItemCart(comic)}>Selecionar</ButtonSelect>
                         </Card>
                     )
                 })}
@@ -105,9 +107,9 @@ const Comics = () => {
                                 <div>
                                     <h2 className="modal-title">{data.title}</h2>
                                     <img className="imgComic-modal" src={`${data.thumbnail.path}.${data.thumbnail.extension}`} alt={`Capa de ${data.title}`} />
-                                    <p>Number Pages: {data.pageCount}</p>
-                                    <p>Format: {data.format}</p>
-                                    <p>Description: {data.description}</p>
+                                    <p className="p-0 mb-1">Number Pages: {data.pageCount}</p>
+                                    <p className="p-0 mb-1">Format: {data.format}</p>
+                                    <p className="p-0 mb-2">Description: {data.description}</p>
                                 </div>
                             )
                         })}

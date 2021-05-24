@@ -8,7 +8,7 @@ const Search = ({ value, onChange }) => {
     }
 
     return (
-        <input type="search" value={value} onChange={handleChange} placeholder="Buscar" />
+        <input className="search-comic" type="search" value={value} onChange={handleChange} placeholder="Buscar" />
     )
 
 }
