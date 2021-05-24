@@ -9,7 +9,7 @@ import api from '../../services/api'
 import { addItem } from '../../store/ducks/cart'
 import { addMessage } from "../../store/ducks/layout"
 
-import { Container, CardList, Card, ButtonDetails, ButtonSelect, ButtonMore } from './styles'
+import { Container, CardList, Card, ButtonMore } from './styles'
 
 const Comics = () => {
 
@@ -78,7 +78,7 @@ const Comics = () => {
     function addItemCart(comic) {
         dispatch(addItem(comic));
 
-        dispatch(addMessage("HQ adicionada com sucesso!"));
+        dispatch(addMessage(`${comic.title} adicionado com sucesso!`));
     }
 
 
@@ -94,9 +94,9 @@ const Comics = () => {
                             <h2 className="title-comic p-0 mb-1">{comic.title}</h2>
                             <p className="p-0 mb-1">Number Pages: {comic.pageCount}</p>
                             <p className="p-0 mb-2" >Format: {comic.format}</p>
-                            <ButtonDetails onClick={() => getComic(comic.id)}>
-                                Detalhes</ButtonDetails>
-                            <ButtonSelect onClick={() => addItemCart(comic)}>Selecionar</ButtonSelect>
+                            <button type="button" className="btn btn-outline-danger float-right mr-2" onClick={() => getComic(comic.id)}>
+                                Detalhes</button>
+                            <button className="btn btn-outline-danger float-left ml-2" onClick={() => addItemCart(comic)}>Selecionar</button>
                         </Card>
                     )
                 })}

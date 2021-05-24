@@ -5,6 +5,7 @@ import ItemCart from "../../components/ItemCart"
 import "./index.css"
 
 import { removeItem } from '../../store/ducks/cart'
+import { addMessage } from '../../store/ducks/layout'
 
 import Header from '../../components/Header'
 
@@ -15,6 +16,8 @@ const CartPage = () => {
 
     function removeItemCart(id) {
         dispatch(removeItem(id));
+
+        dispatch(addMessage('Item removido com sucesso!'))
     }
 
     return (
@@ -22,7 +25,7 @@ const CartPage = () => {
             <Header />
             <div className="container-fluid">
                 <div className="row">
-                    {cart.length === 0 ? (<p className="col-sm-12 mt-5 text-warning text-center">Sem revistas no carrinho</p>)
+                    {cart.length === 0 ? (<p className="col-sm-12 mt-5 text-dark text-center font-weight-bold">Sem revistas no carrinho</p>)
                         : (
                             <React.Fragment>
                                 {cart.map((item) => <ItemCart key={item.id} item={item} removeItemCart={removeItemCart} />)}
