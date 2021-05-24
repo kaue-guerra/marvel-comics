@@ -1,6 +1,6 @@
 # Aplicação
 
-Essa aplicação para listar todas as hqs da marvel.
+Essa aplicação para listar todas as hqs da marvel, o usuário pode buscar a hq desejada através do nome, selecionar quais HQs deseja e escolher o endereço para envia-las. Projeto feito com Reactjs
 
 ## Tecnologias Utilizadas
 
@@ -9,10 +9,15 @@ Essa aplicação para listar todas as hqs da marvel.
 
 ### Frontend:
 * React
+* React-Router-Dom
+* Redux
 * React Icons
+* FontAwesome
 * Axios
 * MD5
 * Styled Components
+* Bootstrap
+
 
 ## Rodar o projeto
 
