@@ -11,3 +11,12 @@
     max-height: 427px;
     
 }
+
+.msg-cart{
+    margin-top: 125px;
+    position: unset !important;
+}
+
+.card-cart{
+    position: unset !important;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import './index.css';
@@ -11,16 +11,35 @@ const Header = () => {
     const length = useSelector(state => state.cart.length);
 
     return (
-        <header>
-            <nav>
-                <Link to="/">
+        <div className="header-prime">
+            <nav className="l-header navbar navbar-expand-lg navbar-dark">
+                <NavLink to="/" activeClassName="active" className="navbar-brand">
                     <img src={Logo} alt="Marvel" className="logo" />
-                </Link>
+                </NavLink>
 
-                <Link to="/" className="display-4 ml-5 align-middle text-white" >Home</Link>
-                <Link className="float-right mt-4 text-white align-middle" to="/cart"> <i class="fas fa-shopping-cart">({length})</i></Link>
+                <div className="collapse navbar-collapse" id="navbarColor01">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <NavLink to="/" activeClassName="active" className="nav-link">
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/cart" activeClassName="active" className="nav-link">
+                                HQs Selecionadas
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+                <ul className="navbar-nav ml-md-auto">
+                    <NavLink to="/cart" activeClassName="active" className="nav-item text-white">
+                        <i className="fas fa-shopping-cart fa-2x" aria-hidden="true">
+                            <span className="fa-counter">({length})</span>
+                        </i>
+                    </NavLink>
+                </ul>
             </nav>
-        </header>
+        </div>
     )
 }
 
