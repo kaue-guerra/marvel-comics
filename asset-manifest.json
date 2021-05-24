@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/marvel-comics/static/css/main.d9a6ad3a.chunk.css",
-    "main.js": "/marvel-comics/static/js/main.430bf48b.chunk.js",
-    "main.js.map": "/marvel-comics/static/js/main.430bf48b.chunk.js.map",
+    "main.js": "/marvel-comics/static/js/main.afe95f5f.chunk.js",
+    "main.js.map": "/marvel-comics/static/js/main.afe95f5f.chunk.js.map",
     "runtime-main.js": "/marvel-comics/static/js/runtime-main.75de0a55.js",
     "runtime-main.js.map": "/marvel-comics/static/js/runtime-main.75de0a55.js.map",
     "static/js/2.e6bb7b21.chunk.js": "/marvel-comics/static/js/2.e6bb7b21.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.75de0a55.js",
     "static/js/2.e6bb7b21.chunk.js",
     "static/css/main.d9a6ad3a.chunk.css",
-    "static/js/main.430bf48b.chunk.js"
+    "static/js/main.afe95f5f.chunk.js"
   ]
 }
