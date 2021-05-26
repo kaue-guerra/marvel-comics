@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import ItemCart from "../../components/ItemCart"
 import "./index.css"
 
@@ -10,6 +12,7 @@ import { addMessage } from '../../store/ducks/layout'
 import Header from '../../components/Header'
 
 const CartPage = () => {
+
 
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch();
@@ -25,9 +28,10 @@ const CartPage = () => {
             <Header />
             <div className="container-fluid">
                 <div className="row">
-                    {cart.length === 0 ? (<h2 className="col-sm-12 msg-cart text-center font-weight-bold">Sem HQs selecionadas</h2>)
+                    {cart.length === 0 ? (<h2 className="col-sm-12 msg-cart-empty text-center font-weight-bold">Sem HQs selecionadas</h2>)
                         : (
                             <React.Fragment>
+                                <Link to="/send" className="btn-send text-center font-weight-bold">Escolher Endereço de envio</Link>
                                 <h2 className="col-sm-12 msg-cart text-dark text-center font-weight-bold">HQs Selecionadas</h2>
                                 {cart.map((item) => <ItemCart key={item.id} item={item} removeItemCart={removeItemCart} />)}
                             </React.Fragment>
